@@ -1,7 +1,25 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { startLogout } from '../../actions/auth';
+
+
 import { JournalEntries } from './JournalEntries'
 
+
 export const Sidebar = () => {
+
+    // Definimos la variable dispatch para poder utilizar
+    const dispatch = useDispatch();
+    
+    // Creamos una función para el botón Logout
+    const handleLogout = () => {
+
+        // Hacemos el dispatch de la función que hará logout en Firebase
+        dispatch( startLogout() );
+
+    };
+
+
     return (
         <aside className="journal__sidebar">
 
@@ -12,7 +30,10 @@ export const Sidebar = () => {
                     <span> Iván </span>
                 </h3>
 
-                <button className="btn">
+                <button 
+                    className="btn"
+                    onClick={ handleLogout }
+                >
                     Logout
                 </button>
 
