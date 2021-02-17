@@ -13,4 +13,15 @@ export const types = {
     uiStartLoading: '[UI] Start Loading',
     uiFinisLoading: '[UI] Finish Loading',
 
+    // Creamos types para el notesReducer
+    notesAddNew:            '[Notes] New note',
+    notesActive:            '[Notes] Set active note',
+    notesLoad:              '[Notes] Load notes',
+    notesUpdate:            '[Notes] Upadte note saved',
+    notesDelete:            '[Notes] Delete note',
+    notesFileUrl:           '[Notes] Upadte image url',
+    notesLogoutCleaning:    '[Notes] Logout Cleaning',
+
+
+
 }

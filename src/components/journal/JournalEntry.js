@@ -1,35 +1,68 @@
-import React from 'react'
+import React from 'react';
+import moment from 'moment';
+import { useDispatch } from 'react-redux';
+import { activeNote } from '../../actions/notes';
+// import 'moment/locale/es'
 
-export const JournalEntry = () => {
+
+export const JournalEntry = ({ id, date, title, body, url}) => {
+
+    // Declaramos una variable dispatch para lanzar acciones
+    const dispatch = useDispatch()
+
+    // Improtamos el locale, y establecemos el idioma
+    // moment.locale('es);')
+    
+    // Cargamos en una variable la trasnformación de la fecha con el package moment
+    const noteDate = moment(date);
+
+    //Creamos una acción para cuando se haga click encima de una nota
+    const handleEntryClick = () => {
+
+        // console.log('click nota' + id)
+
+        // Hacemos el dispatch con los datos de la nota
+        dispatch( activeNote( id, {
+            date, title, body, url
+        }) );
+
+    }
 
     return (
-        <div className="journal__entry">
+        <div 
+            className="journal__entry animate__animated animate__fadeIn animate__faster" 
+            onClick={ handleEntryClick }
+        >
 
-            <div 
-                className="journal__entry-picture"
-                style={{ // el style aquí hay que ponerlo completo, coo si fuese css, no como un className
-                    backgroundSize: 'cover',
-                    backgroundImage: 'url(https://www.wwf.org.uk/sites/default/files/styles/hero_s/public/2019-05/Turtle%20and%20sea%20grass.jpg?h=7e730666&itok=59yknGMI)'
-                }}
-            >
+            {
+                // Si tenemos un url, mostramos la imagen. De lo contrario no hace nada
+                url && 
+                <div 
+                    className="journal__entry-picture"
+                    style={{ // el style aquí hay que ponerlo completo, coo si fuese css, no como un className
+                        backgroundSize: 'cover',
+                        backgroundImage: `url(${ url })`
+                    }}
+                >
+                </div>
+            }
                 
-            </div>
 
             <div className="journal__entry-body" >
 
                 <p className ="journal__entry-title" >
-                    Un nuevo día
+                    { title }
                 </p>
 
                 <p className ="journal__entry-content">
-                    Lorem Ipsum akdsjf askdjfaskdfj dfj aslñkdj sad fkljas df asdlkfj asldkas dfkaj 
+                    { body }
                 </p>
 
             </div>
 
             <div className="journal__entry-date-box">
-                <span>Monday</span>
-                <h4>28</h4>
+                <span>{ noteDate.format('dddd')}</span>
+                <h4>{ noteDate.format('Do')}</h4>
             </div>
             
         </div>

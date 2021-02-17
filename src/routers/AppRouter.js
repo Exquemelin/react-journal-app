@@ -13,6 +13,7 @@ import { JournalScreen } from '../components/journal/JournalScreen';
 import { login } from '../actions/auth';
 import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
+import { startLoadingNotes } from '../actions/notes';
 
 
 export const AppRouter = () => {
@@ -42,6 +43,9 @@ export const AppRouter = () => {
 
                 // Si está autenticado, ponemos el isLoggedIn en true
                 setIsLoggedIn( true );
+
+                // Hacemos el dispatch de la carga de notas
+                dispatch( startLoadingNotes( user.uid ) )
                 
             } else {
 
@@ -61,7 +65,7 @@ export const AppRouter = () => {
     // Si estamos haciendo checking, lanzamos una pantalla de carga
     if ( checking ) {
         return (
-            <h1>Espere......</h1> // Mejor cambiar por una página
+            <h1>Wait......</h1> // Mejor cambiar por una página
         )
     } 
 

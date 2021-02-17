@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState } from "react";
+
 
 export const useForm = ( initialState = {} ) => {
     
@@ -6,8 +7,10 @@ export const useForm = ( initialState = {} ) => {
     const [values, setValues] = useState(initialState);
 
     // Con este reset vamos a resetear los cambios
-    const reset = () => {
-        setValues(initialState)
+    // establecemos que nos puedan enviar un nuevo estado newFormState
+    // Si no nos llega nada, directamente tomamos el initialState
+    const reset = ( newFormState = initialState ) => {
+        setValues( newFormState );
     }
 
     // Creamos una función que nos vaya modificamos los archivos como los tenemos

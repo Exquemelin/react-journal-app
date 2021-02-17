@@ -18,7 +18,7 @@ export const LoginScreen = () => {
 
     // Creamos una variable para desestructurar el useForm personalizado
     const [ formValues, handleInputChange ] = useForm({
-        email: 'ivan.chao@gmail.com',
+        email: 'lola@gmail.com',
         password: '123456',
     });
 
@@ -48,7 +48,10 @@ export const LoginScreen = () => {
         <>
             <h3 className="auth__title">Login</h3>
             
-            <form onSubmit={ handleLogin }>
+            <form 
+                onSubmit={ handleLogin }
+                className="animate__animated animate__fadeIn animate__faster"
+            >
 
                 <input 
                     type="text"
